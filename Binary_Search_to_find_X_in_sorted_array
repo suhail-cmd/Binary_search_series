@@ -1,0 +1,36 @@
+#python
+def binary_search(arr,n,target):
+    if n == 1 and arr[0] == target:
+        return n 
+    low,high = 0,n - 1 
+    while low <= high:
+        mid = (low + high)//2
+        if arr[mid] == target:
+            return mid
+        elif target > arr[mid]:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+n = 8 
+arr = [4,6,8,12,14,16,18,20]
+target = 14
+print(binary_search(arr,n,target))
+#####################
+def binary_search(arr,low,high,target):
+    if low > high:
+        return n 
+    mid = (low + high)//2
+    if arr[mid] == target:
+        return mid
+    elif target > arr[mid]:
+        return(binary_search(arr, mid + 1,high,target))
+    else:
+        return(binary_search(arr,low,mid - 1,target))
+    return -1
+
+arr = [4,6,8,12,14,16,18,20]
+target = 14
+n =len(arr)
+print(binary_search(arr,0,n - 1,target))
+        
