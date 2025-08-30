@@ -1,0 +1,20 @@
+#python
+def upper_bound(arr,n,target):
+    low,high = 0,n - 1
+    ans = n 
+    while low <= high:
+        mid = (low + high)//2
+        if arr[mid] > target:
+            ans = mid 
+            high = mid - 1 
+        else:
+            low = mid + 1 
+    return ans
+    
+arr = [4,6,8,12,14,16,18,20]
+target = 6
+n =len(arr)
+print(upper_bound(arr,n,target))
+        
+
+        
