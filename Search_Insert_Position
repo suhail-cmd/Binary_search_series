@@ -1,0 +1,18 @@
+#python
+def search_insert_position(arr,n,target):
+    if n == 1 and arr[0] == target:
+        return arr
+    low,high = 0,n-1
+    ans = n
+    while low <= high:
+        mid = (low + high)//2
+        if arr[mid] >= target:
+            ans = mid
+            high = mid - 1 
+        else:
+            low = mid + 1 
+    return ans 
+arr = list(map(int,input().split()))
+n = len(arr)
+target = int(input())
+print(search_insert_position(arr,n,target))
