@@ -1,0 +1,27 @@
+#python
+def floor_and_ceil(arr,n,target):
+    low,high = 0,n-1
+    ans = -1 
+    while low <= high:
+        mid = (low + high)//2
+        if arr[mid] <= target:
+            ans = arr[mid]
+            low = mid + 1 
+        else:
+            high = mid - 1 
+    return ans 
+def ceil(arr,n,target):
+    low,high = 0,n-1
+    ans = -1 
+    while low <= high:
+        mid = (low + high)//2
+        if arr[mid] >= target:
+            ans = arr[mid]
+            high = mid - 1 
+        else:
+            low = mid + 1 
+    return ans 
+arr = list(map(int,input().split()))
+n = len(arr)
+target = int(input())
+print(floor_and_ceil(arr,n,target),(ceil(arr,n,target)))
