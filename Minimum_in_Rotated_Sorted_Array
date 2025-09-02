@@ -1,0 +1,33 @@
+#python
+n = len (arr)
+print(minimum_ele_rotated(arr,n))
+
+arr = [3,4,5,1,2]
+m = float('inf')
+for i in range(len(arr)):
+    if arr[i] < m:
+        m = arr[i]
+print(m)
+#########################
+def minimum_ele_rotated(arr,n):
+    low,high = 0 , n - 1
+    ans = float('inf')
+    while low <= high:
+        mid = (low + high)//2
+        if arr[low] <= arr[high]:
+            ans = min(ans,arr[low])
+            break
+        
+        if arr[low] <= arr[mid]:
+            ans = min(ans,arr[low])
+            low = mid +  1 
+        else:
+            
+            ans = min(ans,arr[mid])
+            high = mid -  1 
+           
+    return ans
+arr = [7,8,9,1,2,3,4,5,6]
+
+n = len (arr)
+print(minimum_ele_rotated(arr,n))
