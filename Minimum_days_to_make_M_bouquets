@@ -1,0 +1,62 @@
+#python
+
+def possible(arr,m,k,day):
+    n = len(arr)
+    count,no_of_blooms = 0,0
+    for i in range(n):
+        if arr[i] <= day:
+            count += 1
+            if count == k :
+                no_of_blooms += 1
+                count = 0
+        else:
+            count = 0
+    return no_of_blooms >= m 
+def rosegarden(arr,k,m):
+    val = m * k
+    if val > len(arr):
+        return -1
+    min_,max_ = min(arr),max(arr)
+    for i in range(min_,max_ + 1):
+        if possible(arr,m,k,i):
+            return i 
+    return -1
+arr = [13,7,7,7,7,11,12,13,7]
+m = 2 
+k = 3 
+print(rosegarden(arr,m,k))
+######################################
+    
+def possibles(arr,m,k,day):
+    count,no_of_blooms = 0,0
+    n = len(arr)
+    for i in range(n):
+        if arr[i] <= day:
+            count += 1
+            if count == k:
+                no_of_blooms += 1 
+                count = 0
+        else:
+            count = 0
+    return no_of_blooms >= m
+def rosegarden(arr,k,m):
+    low,high = min(arr),max(arr)
+    ans = -1 
+    val = m * k
+    if val > len(arr):
+        return -1
+    while low <= high:
+        mid = (low + high)//2 
+        if possibles(arr,m,k,mid):
+            ans = mid 
+            high = mid - 1
+        else:
+            low = mid + 1
+            
+    return ans
+    
+arr = [13,7,7,7,7,11,12,13,7]
+m = 2 
+k = 3 
+print(rosegarden(arr,m,k))
+            
