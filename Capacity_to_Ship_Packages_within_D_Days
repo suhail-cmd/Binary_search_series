@@ -1,0 +1,51 @@
+#python
+def findDays(weights,cap):
+    load = 0
+    days = 1 
+    n = len(weights)
+    for i in range(n):
+        if load + weights[i] > cap:
+            days += 1 
+            load = weights[i]
+        else:
+            load += weights[i]
+    return days
+def leastcapacity(weights,d):
+    maxi = max(weights)
+    summation = sum(weights)
+    for cap in range(maxi,summation+1):
+        if findDays(weights,cap) <= d:
+            return cap 
+    return -1 
+weights = [5, 4, 5, 2, 3, 4, 5, 6]
+d = 5
+
+print(leastcapacity(weights,d))
+####################################            
+def findDays(weights,cap):
+    load = 0
+    days = 1 
+    n = len(weights)
+    for i in range(n):
+        if load + weights[i] > cap:
+            days += 1 
+            load = weights[i]
+        else:
+            load += weights[i]
+    return days
+def leastcapacity(weights,d):
+    low = max(weights)
+    high = sum(weights)
+    ans = high
+    while low <= high:
+        mid = (low+high)//2
+        if findDays(weights,mid) <= d:
+            ans = mid
+            high = mid -1
+        else:
+            low = mid + 1 
+    return low 
+weights = [1,2,3,4,5,6,7,8,9,10]
+d = 5
+
+print(leastcapacity(weights,d))
