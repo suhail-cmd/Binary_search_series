@@ -1,0 +1,54 @@
+#pyhton        
+m = int(input())
+n = int(input())
+matrix = []
+for i in range(m):
+    row = []
+    for j in range(n):
+        row.append(int(input()))
+    matrix.append(row)
+
+for row in matrix:
+    print(*row)
+max_ones = -1
+max_ones_ind = -1
+for i in range(m):
+    # first_ones = lowerbound(matrix[i])
+    count_ones = matrix[i].count(1)
+    if count_ones > max_ones:
+        max_ones = count_ones
+        max_ones_ind = i
+print(max_ones_ind)  
+##############################
+def lowerbound(row):
+    low,high = 0,len(row)-1
+    first = len(row)
+    while low <= high:
+        mid = (low + high)//2
+        if row[mid] == 1:
+            first = mid
+            high = mid - 1 
+        else:
+            low = mid + 1
+    return first
+        
+m = int(input())
+n = int(input())
+matrix = []
+for i in range(m):
+    row = []
+    for j in range(n):
+        row.append(int(input()))
+    matrix.append(row)
+
+for row in matrix:
+    print(*row)
+max_ones = -1
+max_ones_ind = -1
+for i in range(m):
+    first_ones = lowerbound(matrix[i])
+    count_ones = n - first_ones
+    if count_ones > max_ones:
+        max_ones = count_ones
+        max_ones_ind = i
+print(max_ones_ind)    
