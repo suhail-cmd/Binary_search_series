@@ -1,0 +1,49 @@
+#python
+n = 5 
+m = 5 
+matrix = []
+for i in range(m):
+    row = list(map(int,input().split()))
+    matrix.append(row)
+target = int(input()) 
+low,high = 0,(n * m) -1
+found = False
+while low <= high:
+    mid = (low + high)//2
+    i = mid // n
+    j = mid % n 
+    if matrix[i][j] == target:
+        found = True
+        break
+    elif matrix[i][j] <= target:
+        high = mid - 1 
+    else:
+        low = mid + 1 
+return False
+
+#######################
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        left,right = len(matrix),len(matrix[0])
+        for i in range(left):
+            for j in range(right):
+                if matrix[i][j] == target:
+                    return True
+        return False
+#########################
+     class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        if not matrix or not matrix[0]:
+            return False
+        n,m = len(matrix),len(matrix[0])
+        i,j = 0,m - 1
+        while i < n and j >= 0:
+            if matrix[i][j] == target:
+                return True
+            elif matrix[i][j] > target:
+                j -= 1
+            else:
+                i += 1 
+        return False
+
+
