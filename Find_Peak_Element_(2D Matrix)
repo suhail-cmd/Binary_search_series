@@ -1,0 +1,41 @@
+#python
+def findPeakGrid(self, mat: List[List[int]]) -> List[int]:
+        rows = len(mat)
+        cols = len(mat[0])
+        res = []
+        for i in range(rows):
+            for j in range(cols):
+                val = mat[i][j]
+                up = mat[i - 1][j] if i > 0 else -1
+                down = mat[i + 1][j] if i < rows - 1 else -1
+                right = mat[i][j + 1] if j < cols -1 else -1
+                left = mat[i][j - 1] if j > 0 else -1
+
+                if val >= up and val >= down and val >= left and val >= right:
+                    return [i, j]
+        return[-1,-1]
+#################
+class Solution:
+    def findPeakGrid(self, mat: List[List[int]]) -> List[int]:
+        rows = len(mat)
+        cols = len(mat[0])
+        left,right = 0,cols - 1
+        while left <= right:
+            mid_col = (left + right)//2
+            max_row = 0
+            for i in range(rows):
+                if mat[i][mid_col] > mat[max_row][mid_col]:
+                    max_row = i
+            left_val = mat[max_row][mid_col - 1] if mid_col - 1 >= 0 else -1
+            right_val = mat[max_row][mid_col + 1] if mid_col + 1 < cols else -1
+            curr_val = mat[max_row][mid_col]
+            if curr_val >= left_val and curr_val >= right_val:
+                return [max_row,mid_col]
+            elif curr_val < left_val:
+                 right = mid_col - 1
+            else:
+                left = mid_col + 1
+        return[-1,-1]
+
+
+        
